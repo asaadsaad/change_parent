@@ -1,0 +1,28 @@
+@WEB_SERVER = localhost:3000
+POST http://{{WEB_SERVER}}/reset HTTP/1.1
+content-type: application/json
+
+{
+    "_id":1,
+    "toc": [
+        {"node_id":1, "parent":0, "order": 1},
+        {"node_id":2, "parent":0, "order": 2},
+        {"node_id":3, "parent":0, "order": 3},
+        {"node_id":4, "parent":1, "order": 1},
+        {"node_id":5, "parent":1, "order": 2},
+        {"node_id":6, "parent":1, "order": 3},
+        {"node_id":7, "parent":2, "order": 1},
+        {"node_id":8, "parent":2, "order": 2},
+        {"node_id":9, "parent":2, "order": 3}
+    ]
+}
+###
+GET http://{{WEB_SERVER}}/
+
+###
+@node_id = 5
+
+PATCH http://{{WEB_SERVER}}/change/{{node_id}} HTTP/1.1
+content-type: application/json
+
+{ "old_parent": 1, "new_parent": 2 , "new_order": 2 } 
